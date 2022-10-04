@@ -2,7 +2,7 @@
 	// render template home
 	require APPSRC.'/render.php';
 
-	$titles = [
+	/* $titles = [
 		'Superman',
 		'Batman',
 		'Hulk'
@@ -22,5 +22,6 @@
 		'title' => $title,
 		'user' => 'maria',
 		'alumnes' => $alumnes
-	]);
+	]); */
+	echo render('home');
 ?>

@@ -1,6 +1,5 @@
 <?php
 	include APPSRC.'/templates/partials/head.tpl.php';
-	include APPSRC.'/templates/partials/nav.tpl.php';
 ?>
 
 	<body>
@@ -8,6 +7,7 @@
 			<h1>Login</h1>
 			<hr>
 		</header>
+		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
 		<main>
 			<form method="POST" action="?url=logaction">
 				<label for="email">Email:</label>
