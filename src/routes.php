@@ -4,6 +4,7 @@
 		'login',
 		'logaction',
 		'signup',
+		'signupaction',
 		'dashboard',
 		'error'
 	];

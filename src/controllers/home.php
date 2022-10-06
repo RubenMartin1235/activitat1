@@ -23,5 +23,6 @@
 		'user' => 'maria',
 		'alumnes' => $alumnes
 	]); */
+	
 	echo render('home');
 ?>

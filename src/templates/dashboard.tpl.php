@@ -9,7 +9,7 @@
 		</header>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
 		<main>
-			<h2>Welcome <?= d;?>!</h2>
+			<h2>Welcome, <?= $user->fullname;?>!</h2>
 		</main>
 		<footer>
 			

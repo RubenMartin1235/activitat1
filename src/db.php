@@ -13,7 +13,7 @@
         return $db;
     }
 
-    function auth(PDO $db, string $email, string $passwd):bool {
+    function auth(PDO $db, string $email, string $passwd):stdClass {
         $stmt = $db->prepare(
             "SELECT * FROM users WHERE email = :email LIMIT 1;"
         );
@@ -22,10 +22,84 @@
         ]);
 
         if ($stmt) {
-            $row = $stmt->fetch();
+            $user = $stmt->fetch();
             if (
                 $stmt->rowCount() == 1 &&
-                password_verify($passwd, ($row->passwd))
+                password_verify($passwd, ($user->passwd))
+            ) {
+                return $user;
+            } else {
+                return new stdClass();
+            }
+        } else {
+            return new stdClass();
+        }
+    }
+
+    
+
+    function signupUser(
+        PDO $db,
+        string $fullname, string $email,
+		string $passwd, string $passwdConfirmation,
+		bool $isProf
+    ):stdClass {
+        if (
+			signupUserValidate(
+				$db,
+				$fullname, $email,
+				$passwd, $passwdConfirmation,
+				$isProf
+			)
+		) {
+			$stmt = $db->prepare(
+				"INSERT INTO users VALUES
+					(LAST_INSERT_ID(), :fullname,:email,:passwd,"+(($isProf)? 1:0)+")
+				;"
+			);
+			$stmt->execute([
+				':fullname' => $fullname,
+				':email' => $email,
+				':passwd' => password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>4])
+			]);
+			if ($stmt) {
+				$user = $stmt->fetch();
+				if (
+					$stmt->rowCount() == 1 &&
+					password_verify($passwd, ($user->passwd))
+				) {
+					return $user;
+				} else {
+					return new stdClass();
+				}
+			} else {
+				return new stdClass();
+			}
+		} else {
+			return new stdClass();
+		}
+    }
+
+    function signupUserValidate(
+        PDO $db,
+        string $fullname, string $email,
+		string $passwd, string $passwdConfirmation,
+		bool $isProf
+    ):bool {
+        $stmt = $db->prepare(
+			"SELECT * FROM users
+			WHERE (fullname = :fullname OR email = :email);"
+        );
+        $stmt->execute([
+			':fullname' => $fullname,
+            ':email' => $email
+        ]);
+
+        if ($stmt) {
+            $user = $stmt->fetchAll();
+            if (
+                $stmt->rowCount() < 1 &&
+				$passwd == $passwdConfirmation
             ) {
                 return true;
             } else {

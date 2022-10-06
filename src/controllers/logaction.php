@@ -1,6 +1,5 @@
 <?php
 	require APPSRC . '/db.php';
-	require APPSRC . '/render.php';
 	// Agafar $_REQUEST['email'] i $_REQUEST['passwd']
 
 	// Comprovar si existeixen a la BD
@@ -14,18 +13,20 @@
 		if (isset($_POST['email']) && isset($_POST['passwd'])) {
 			$email = $_REQUEST['email'];
 			$passwd = $_REQUEST['passwd'];
-			if (auth($db,$email,$passwd)) {
+			if ( ($user = auth($db,$email,$passwd)) <> new stdClass() ) {
 				// desar sessió
-				echo "ver";
+				$_SESSION['user'] = $user;
+				
 				// redirigir a dashboard
+				header('location:?url=dashboard');
 			} else {
-				echo render('login');
+				header('location:?url=login');
 			}
 		} else {
-			echo render('login');
+			header('location:?url=login');
 		}
 	} else {
-		echo render('login');
+		header('location:?url=login');
 	}
 	
 ?>
