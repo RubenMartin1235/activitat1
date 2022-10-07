@@ -2,7 +2,12 @@
 	// render template home
 	require APPSRC.'/render.php';
 
-	echo render('dashboard',[
-		'user'=>$_SESSION['user']
-	]);
+	if (isset($_SESSION['user'])) {
+		echo render('dashboard',[
+			'user'=>$_SESSION['user']
+		]);
+	} else {
+		header('location:?url=home');
+	}
+	
 ?>

@@ -21,7 +21,7 @@
 			isset($_POST['passwd']) && isset($_POST['passwdConfirm']) &&
 			isset($_POST['isProf'])
 		) {
-			$fullname = $_REQUEST['email'];
+			$fullname = $_REQUEST['fullname'];
 			$email = $_REQUEST['email'];
 			$passwd = $_REQUEST['passwd'];
 			$passwdConfirm = $_REQUEST['passwdConfirm'];
@@ -31,7 +31,7 @@
 				(
 					$user = signupUser($db,
 						$fullname,$email,
-						$passwd,$passwdConfirmation,
+						$passwd,$passwdConfirm,
 						$isProf
 					)
 				) <> new stdClass()

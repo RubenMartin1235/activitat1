@@ -41,33 +41,38 @@
     function signupUser(
         PDO $db,
         string $fullname, string $email,
-		string $passwd, string $passwdConfirmation,
+		string $passwd, string $passwdConfirm,
 		bool $isProf
     ):stdClass {
         if (
 			signupUserValidate(
 				$db,
 				$fullname, $email,
-				$passwd, $passwdConfirmation,
+				$passwd, $passwdConfirm,
 				$isProf
 			)
 		) {
+            $passwd_encrypted = password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>4]);
 			$stmt = $db->prepare(
 				"INSERT INTO users VALUES
-					(LAST_INSERT_ID(), :fullname,:email,:passwd,"+(($isProf)? 1:0)+")
+					(LAST_INSERT_ID(), :fullname,:email,:passwd,".(($isProf)? 1:0).")
 				;"
 			);
 			$stmt->execute([
 				':fullname' => $fullname,
 				':email' => $email,
-				':passwd' => password_hash($passwd, PASSWORD_BCRYPT, ['cost'=>4])
+				':passwd' => $passwd_encrypted
 			]);
 			if ($stmt) {
+                $lastID = (int)($db->lastInsertId());
+
+                $stmt = $db->prepare(
+                    "SELECT * FROM users WHERE id = :id;"
+                );
+                $stmt->execute([':id' => $lastID]);
+
 				$user = $stmt->fetch();
-				if (
-					$stmt->rowCount() == 1 &&
-					password_verify($passwd, ($user->passwd))
-				) {
+				if ($stmt->rowCount() == 1) {
 					return $user;
 				} else {
 					return new stdClass();
@@ -83,7 +88,7 @@
     function signupUserValidate(
         PDO $db,
         string $fullname, string $email,
-		string $passwd, string $passwdConfirmation,
+		string $passwd, string $passwdConfirm,
 		bool $isProf
     ):bool {
         $stmt = $db->prepare(
@@ -94,12 +99,12 @@
 			':fullname' => $fullname,
             ':email' => $email
         ]);
-
+        
         if ($stmt) {
             $user = $stmt->fetchAll();
             if (
                 $stmt->rowCount() < 1 &&
-				$passwd == $passwdConfirmation
+				$passwd == $passwdConfirm
             ) {
                 return true;
             } else {

@@ -5,6 +5,7 @@
 		'logaction',
 		'signup',
 		'signupaction',
+		'logoutaction',
 		'dashboard',
 		'error'
 	];

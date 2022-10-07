@@ -1,5 +1,7 @@
-<nav>
-	<a href="?url=home">Home</a>
-	<a href="?url=login">Login</a>
-	<a href="?url=signup">Sign Up</a>
-</nav>
+<?php
+	if (isset($_SESSION['user'])) {
+		include APPSRC.'/templates/partials/nav-user.tpl.php';
+	} else {
+		include APPSRC.'/templates/partials/nav-guest.tpl.php';
+	}
+?>
