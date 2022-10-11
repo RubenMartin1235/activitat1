@@ -1,26 +1,24 @@
 <?php
 	require APPSRC . '/db.php';
-	// Agafar $_REQUEST['email'] i $_REQUEST['passwd']
 
-	// Comprovar si existeixen a la BD
-
-	// Tenim dues possibilitats:
-	// *	1. Existeix ==>		dashboard i obrim sessió usuari.
-	// *	2. NO Existeix ==>	retornem a home o ens quedem a login.
-	$db = connectMysql($dsn, $dbuser, $dbpass);
+	// Tenim possibilitats:
+	// *	1. No existeix usuari i és vàlid:
+	//		Inserim usuari en taula users, obrim sessió usuari,
+	//		i redirigim a dashboard. 
+	// *	2. Ja existeix ==>	ens quedem a signup.
+	// *	3. No és vàlid ==>	ens quedem a signup.
 
 	if (
 		!empty($_POST['fullname']) &&
 		!empty($_POST['email']) &&
-		!empty($_POST['passwd']) && !empty($_POST['passwdConfirm']) &&
-		!empty($_POST['isProf'])
+		!empty($_POST['passwd']) && !empty($_POST['passwdConfirm'])
 	) {
 		if (
 			isset($_POST['fullname']) &&
 			isset($_POST['email']) &&
-			isset($_POST['passwd']) && isset($_POST['passwdConfirm']) &&
-			isset($_POST['isProf'])
+			isset($_POST['passwd']) && isset($_POST['passwdConfirm'])
 		) {
+			$db = connectMysql($dsn, $dbuser, $dbpass);
 			/*
 			$fullname = $_REQUEST['fullname'];
 			$email = $_REQUEST['email'];
@@ -32,7 +30,7 @@
 			$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 			$passwd = filter_input(INPUT_POST, 'passwd', FILTER_SANITIZE_STRING);
 			$passwdConfirm = filter_input(INPUT_POST, 'passwdConfirm', FILTER_SANITIZE_STRING);
-			$isProf = filter_input(INPUT_POST, 'isProf', FILTER_SANITIZE_STRING);
+			$isProf = ((isset($isProf)) ? $_REQUEST['isProf'] : false);
 			
 			if (
 				(
