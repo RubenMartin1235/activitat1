@@ -2,10 +2,12 @@
 	$routes = [
 		'home',
 		'login',
-		'logaction',
+		'loginaction',
 		'signup',
 		'signupaction',
 		'logoutaction',
+		'reminduser',
+		'reminduseraction',
 		'dashboard',
 		'error'
 	];

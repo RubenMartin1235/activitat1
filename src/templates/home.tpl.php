@@ -18,5 +18,8 @@
 		<footer>
 			
 		</footer>
+		<?php
+			include APPSRC.'/templates/partials/cookie-consent-banner.tpl.php';
+		?>
 	</body>
 </html>
