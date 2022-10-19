@@ -6,8 +6,8 @@
 		'signup',
 		'signupaction',
 		'logoutaction',
-		'reminduser',
-		'reminduseraction',
+		'rememberuser',
+		'rememberuseraction',
 		'dashboard',
 		'error'
 	];

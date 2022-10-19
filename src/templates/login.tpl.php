@@ -16,8 +16,9 @@
 				<input id="passwd" name="passwd" type="password" placeholder="Password">
 				<button type="submit">LOGIN</button>
 				<br>
-				<label for="rememberMe">Remember me on this computer:</label>
-				<input id="rememberMe" name="rememberMe" type="checkbox">
+				<?php
+					include APPSRC.'/templates/partials/field-rememberuser.tpl.php';
+				?>
 			</form>
 		</main>
 		<footer>

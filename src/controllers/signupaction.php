@@ -30,7 +30,8 @@
 			$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 			$passwd = filter_input(INPUT_POST, 'passwd', FILTER_SANITIZE_STRING);
 			$passwdConfirm = filter_input(INPUT_POST, 'passwdConfirm', FILTER_SANITIZE_STRING);
-			$isProf = ((isset($isProf)) ? $_REQUEST['isProf'] : false);
+			$isProf = filter_input(INPUT_POST, 'isProf', FILTER_SANITIZE_STRING);
+			if (!isset($isProf)) {$isProf = false;}
 			
 			if (
 				(

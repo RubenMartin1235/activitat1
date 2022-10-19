@@ -13,13 +13,14 @@
 		if (isset($_POST['email']) && isset($_POST['passwd'])) {
 			$email = $_REQUEST['email'];
 			$passwd = $_REQUEST['passwd'];
+			
 			if ( ($user = auth($db,$email,$passwd)) <> new stdClass() ) {
 				// desar sessió
 				$_SESSION['user'] = $user;
 
 				if (($rememberMe = $_REQUEST['rememberMe'])) {
-					setcookie('user[email]', $user->email, time()+(3600*24*365), '/');
-					setcookie('user[passwd]', $user->passwd, time()+(3600*24*365), '/');
+					setcookie('rememberuser_email', $user->email, time()+(3600*24*365), '/');
+					setcookie('rememberuser_passwd', $user->passwd, time()+(3600*24*365), '/');
 				}
 				
 				// redirigir a dashboard
