@@ -23,6 +23,9 @@
 					setcookie('rememberuser_passwd', $user->passwd, time()+(3600*24*365), '/');
 				}
 				
+				createNewUserSettingsEntry($db, $email);
+				updateUserLastLoginWithUserId($db, $user->id, date("Y-m-d H:i:s"));
+				
 				// redirigir a dashboard
 				header('location:?url=dashboard');
 			} else {

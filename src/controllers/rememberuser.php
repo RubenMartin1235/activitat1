@@ -11,10 +11,22 @@
 		$email = filter_input(INPUT_COOKIE, 'rememberuser_email', FILTER_SANITIZE_STRING);
 
 		$user = findUserByEmail($db, $email);
+		
 		if ($user <> new stdClass()) {
+			$userid = $user->id;
+			$user_settings = fetchUserSettingsWithUserId($db, $userid);
+			$lastLogin;
+
 			$fullname = $user->fullname;
+			if ($user_settings <> new stdClass()) {
+				$lastLogin = $user_settings->lastLogin;
+			} else {
+				$lastLogin = "(not available)";
+			}
+
 			echo render('rememberuser',[
-				'fullname' => $fullname
+				'fullname' => $fullname,
+				'lastLogin' => $lastLogin
 			]);
 		} else {
 			header('location:?url=home');

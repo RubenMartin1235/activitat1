@@ -8,6 +8,9 @@
 		'logoutaction',
 		'rememberuser',
 		'rememberuseraction',
+		'userprofile',
+		'usersettings',
+		'usersettingsaction',
 		'dashboard',
 		'error'
 	];

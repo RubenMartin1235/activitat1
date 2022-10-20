@@ -17,7 +17,9 @@ body {
 	display: flex;
 	flex-flow: column nowrap;
 }
-
+nav {
+	border-bottom: 1px solid black;
+}
 #cookie-consent-banner {
 	width: 100%;
 	padding: 10px;
@@ -58,6 +60,24 @@ body {
 	color: white;
 	border: none;
 }
+
+#breadcrumbs {
+	padding: 1rem 0.6rem;
+	border-bottom: 1px solid black;
+}
+#breadcrumbs ul {
+	list-style-type: '/';
+	list-style-position: inside;
+
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0.3rem;
+}
+#breadcrumbs ul li:last-child {
+	font-weight: bold;
+}
+
+
 .rememberMeBtn {
 	padding: 0.25em;
 	font-size: 1.2em;

@@ -7,6 +7,11 @@
 			<hr>
 		</header>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
+		<div id="breadcrumbs">
+			<ul>
+				<li><a href="?url=home">Home</a></li>
+			</ul>
+		</div>
 		<main>
 			
 		</main>

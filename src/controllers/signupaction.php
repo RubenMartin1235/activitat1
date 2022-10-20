@@ -42,6 +42,9 @@
 					)
 				) <> new stdClass()
 			) {
+				// crear registre de configuració
+				createNewUserSettingsEntry($db, $email);
+
 				// desar sessió
 				$_SESSION['user'] = $user;
 				

@@ -8,6 +8,12 @@
 			<hr>
 		</header>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
+		<div id="breadcrumbs">
+			<ul>
+				<li><a href="?url=home">Home</a></li>
+				<li><a href="?url=login">Login</a></li>
+			</ul>
+		</div>
 		<main>
 			<form method="POST" action="?url=loginaction">
 				<label for="email">Email:</label>
@@ -17,7 +23,9 @@
 				<button type="submit">LOGIN</button>
 				<br>
 				<?php
-					include APPSRC.'/templates/partials/field-rememberuser.tpl.php';
+					if ($cookie_consent = filter_input(INPUT_COOKIE, 'cookie-consent', FILTER_SANITIZE_STRING) == 'true') {
+						include APPSRC.'/templates/partials/field-rememberuser.tpl.php';
+					}
 				?>
 			</form>
 		</main>

@@ -1,6 +1,13 @@
 <?php
 	require APPSRC . '/db.php';
 
+	function deleteRememberedUserCookies() {
+		unset($_COOKIE['rememberuser_email']);
+		unset($_COOKIE['rememberuser_passwd']);
+		setcookie('rememberuser_email', null, -1, '/');
+		setcookie('rememberuser_passwd', null, -1, '/');
+	}
+
 	$rememberMeAction = filter_input(INPUT_POST, 'rememberMeAction', FILTER_SANITIZE_STRING);
 
 	if (isset($rememberMeAction)) {
@@ -14,23 +21,20 @@
 			if ( ($user = authHashed($db,$email,$passwd)) <> new stdClass() ) {
 				// desar sessió
 				$_SESSION['user'] = $user;
+				
+				setcookie('rememberuser_email', $user->email, time()+(3600*24*365), '/');
+				setcookie('rememberuser_passwd', $user->passwd, time()+(3600*24*365), '/');
 
-				if (($rememberMe = $_REQUEST['rememberMe'])) {
-					setcookie('rememberuser_email', $user->email, time()+(3600*24*365), '/');
-					setcookie('rememberuser_passwd', $user->passwd, time()+(3600*24*365), '/');
-				}
+				updateUserLastLoginWithUserId($db, $user->id, date("Y-m-d H:i:s"));
 				
 				// redirigir a dashboard
 				header('location:?url=dashboard');
 			} else {
-				header('location:?url=home');
+				deleteRememberedUserCookies();
+				header('location:?url=login');
 			}
 		} else {
-			unset($_COOKIE['rememberuser_email']);
-			unset($_COOKIE['rememberuser_passwd']);
-    		setcookie('rememberuser_email', null, -1, '/');
-			setcookie('rememberuser_passwd', null, -1, '/');
-
+			deleteRememberedUserCookies();
 			header('location:?url=login');
 		}
 	} else {
