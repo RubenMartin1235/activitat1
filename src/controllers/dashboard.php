@@ -1,10 +1,17 @@
 <?php
 	// render template home
 	require APPSRC.'/render.php';
+	require APPSRC.'/db.php';
+
+	$db = connectMysql($dsn, $dbuser, $dbpass);
 
 	if (isset($_SESSION['user'])) {
+		$user = $_SESSION['user'];
+		$settings = fetchUserSettingsWithUserId($db, $user->id);
+
 		echo render('dashboard',[
-			'user'=>$_SESSION['user']
+			'user'=>$user,
+			'usersettings'=>$settings
 		]);
 	} else {
 		header('location:?url=home');

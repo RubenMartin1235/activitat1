@@ -4,7 +4,7 @@
 
 	<body>
 		<header>
-			<h1>Profile</h1>
+			<h1>Modify profile settings</h1>
 			<?php include APPSRC.'/templates/partials/user-profile-display.tpl.php'; ?>
 		</header>
 		<hr>
@@ -14,6 +14,7 @@
 				<li><a href="?url=home">Home</a></li>
 				<li><a href="?url=dashboard">Dashboard</a></li>
 				<li><a href="?url=userprofile">Profile</a></li>
+				<li><a href="?url=usersettings">Modify profile settings</a></li>
 			</ul>
 		</div>
 		<main>
@@ -42,7 +43,7 @@
 						</tr>
 					</table>
 				</div>
-				<button type="submit">APPLY CHANGES</button>
+				<button id="modify-user-settings-btn" type="submit">APPLY CHANGES</button>
 			</form>
 		</main>
 		<footer>

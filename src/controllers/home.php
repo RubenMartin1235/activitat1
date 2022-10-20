@@ -1,28 +1,20 @@
 <?php
 	// render template home
 	require APPSRC.'/render.php';
+	require APPSRC.'/db.php';
 
-	/* $titles = [
-		'Superman',
-		'Batman',
-		'Hulk'
-	];
-	$title = $titles[rand()%count($titles)];
+	$db = connectMysql($dsn, $dbuser, $dbpass);
 
-	$alumnes = [
-		'Perico Palotes',
-		'Aitor Tillas Frias',
-		'Aitor Mentas Fuertes',
-		'Jorge Nitales',
-		'Elver Galarga',
-		'Elsa Capunta'
-	];
+	if (isset($_SESSION['user'])) {
+		$user = $_SESSION['user'];
+		$settings = fetchUserSettingsWithUserId($db, $user->id);
 
-	echo render('home', [
-		'title' => $title,
-		'user' => 'maria',
-		'alumnes' => $alumnes
-	]); */
+		echo render('home',[
+			'user'=>$user,
+			'usersettings'=>$settings
+		]);
+	} else {
+		echo render('home');
+	}
 	
-	echo render('home');
 ?>

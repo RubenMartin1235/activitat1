@@ -43,7 +43,7 @@
 					</tr>
 				</table>
 			</div>
-			<button><a href="?url=usersettings">MODIFY USER SETTINGS</a></button>
+			<button id="modify-user-settings-btn"><a href="?url=usersettings">MODIFY USER SETTINGS</a></button>
 		</main>
 		<footer>
 			
