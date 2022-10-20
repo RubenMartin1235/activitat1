@@ -11,6 +11,8 @@
 		'userprofile',
 		'usersettings',
 		'usersettingsaction',
+		'guestsettings',
+		'guestsettingsaction',
 		'dashboard',
 		'error'
 	];

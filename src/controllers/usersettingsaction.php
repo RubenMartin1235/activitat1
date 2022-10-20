@@ -1,6 +1,5 @@
 <?php
 	// render template home
-	require APPSRC.'/render.php';
 	require APPSRC.'/db.php';
 
 	$db = connectMysql($dsn, $dbuser, $dbpass);

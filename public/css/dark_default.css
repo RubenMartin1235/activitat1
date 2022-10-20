@@ -40,3 +40,7 @@ nav {
 	background-color: darkgoldenrod;
 	border: 1px solid var(--border-color);
 }
+button {
+	background-color: darkgoldenrod;
+	border: 1px solid var(--border-color);
+}
