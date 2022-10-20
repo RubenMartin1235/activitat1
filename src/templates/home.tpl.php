@@ -4,8 +4,9 @@
 	<body>
 		<header>
 			<h1>HOME</h1>
-			<hr>
+			<?php include APPSRC.'/templates/partials/user-profile-display.tpl.php'; ?>
 		</header>
+		<hr>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
 		<div id="breadcrumbs">
 			<ul>

@@ -174,9 +174,9 @@
 		if (($user = findUserByEmail($db, $email)) <> new stdClass()) {
 			$userid = $user->id;
 			$stmt = $db->prepare(
-				"INSERT INTO user_settings (id, userid, lastLogin, language, colorTheme)
+				"INSERT INTO user_settings (userid, lastLogin, language, colorTheme)
 				VALUES
-					(LAST_INSERT_ID(), :userid, :lastLogin, 'en', 'light')
+					(:userid, :lastLogin, 'en', 'light')
 				;"
 			);
 			$stmt->execute([
@@ -185,8 +185,7 @@
 			]);
 
 			if ($stmt) {
-				$lastID = (int)($db->lastInsertId());
-				return fetchUserSettingsWithSettingsId($db, $lastID);
+				return fetchUserSettingsWithUserId($db, $userid);
 			} else {
 				return new stdClass();
 			}
@@ -195,21 +194,6 @@
 		}
 	}
 
-	function fetchUserSettingsWithSettingsId(
-		$db, $id
-	):stdClass {
-		$stmt = $db->prepare(
-			"SELECT * FROM user_settings WHERE id = :id;"
-		);
-		$stmt->execute([':id' => $id]);
-
-		$user_settings = $stmt->fetch();
-		if ($stmt->rowCount() == 1) {
-			return $user_settings;
-		} else {
-			return new stdClass();
-		}
-	}
 	function fetchUserSettingsWithUserId(
 		PDO $db, $userid
 	):stdClass {

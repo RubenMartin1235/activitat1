@@ -5,8 +5,8 @@
 	<body>
 		<header>
 			<h1>Login</h1>
-			<hr>
 		</header>
+		<hr>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
 		<div id="breadcrumbs">
 			<ul>

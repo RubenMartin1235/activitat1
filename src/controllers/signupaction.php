@@ -44,7 +44,13 @@
 			) {
 				// crear registre de configuració
 				createNewUserSettingsEntry($db, $email);
-
+				
+				if ($cookie_consent = filter_input(INPUT_COOKIE, 'cookie-consent', FILTER_SANITIZE_STRING) == 'true') {
+					if (isset($rememberMe) && ($rememberMe = $_REQUEST['rememberMe'])) {
+						setcookie('rememberuser_email', $user->email, time()+(3600*24*365), '/');
+						setcookie('rememberuser_passwd', $user->passwd, time()+(3600*24*365), '/');
+					}
+				}
 				// desar sessió
 				$_SESSION['user'] = $user;
 				

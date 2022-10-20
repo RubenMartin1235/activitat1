@@ -23,7 +23,9 @@
 					setcookie('rememberuser_passwd', $user->passwd, time()+(3600*24*365), '/');
 				}
 				
-				createNewUserSettingsEntry($db, $email);
+				try {
+					createNewUserSettingsEntry($db, $email);
+				} catch (PDOException $ex) {}
 				updateUserLastLoginWithUserId($db, $user->id, date("Y-m-d H:i:s"));
 				
 				// redirigir a dashboard

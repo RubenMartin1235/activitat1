@@ -5,9 +5,15 @@
 	<body>
 		<header>
 			<h1>Sign Up</h1>
-			<hr>
 		</header>
+		<hr>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
+		<div id="breadcrumbs">
+			<ul>
+				<li><a href="?url=home">Home</a></li>
+				<li><a href="?url=signup">Sign up</a></li>
+			</ul>
+		</div>
 		<main>
 			<form method="POST" action="?url=signupaction">
 				<label for="fullname">Full name:</label>
@@ -26,6 +32,12 @@
 				<input id="isProf" name="isProf" type="checkbox">
 				<br>
 				<button type="submit">SIGN UP</button>
+				<br>
+				<?php
+					if ($cookie_consent = filter_input(INPUT_COOKIE, 'cookie-consent', FILTER_SANITIZE_STRING) == 'true') {
+						include APPSRC.'/templates/partials/field-rememberuser.tpl.php';
+					}
+				?>
 			</form>
 		</main>
 		<footer>
