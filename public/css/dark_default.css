@@ -44,3 +44,7 @@ button {
 	background-color: darkgoldenrod;
 	border: 1px solid var(--border-color);
 }
+
+input {
+	color:black;
+}

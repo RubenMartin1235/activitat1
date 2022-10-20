@@ -27,6 +27,9 @@ cookieConsentBanner.addEventListener('click',
 			case 'btn-cookie-consent-accept-all':
 				closeBannerAfterSelection = true;
 				document.cookie = `cookie-consent=true;${expiresStr}`;
+
+				document.cookie = `guest_colorTheme=light_default;${expiresStr}`;
+				document.cookie = `guest_language=en;${expiresStr}`;
 				break;
 		}
 		if (closeBannerAfterSelection) {
