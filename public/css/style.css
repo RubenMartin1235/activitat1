@@ -27,7 +27,14 @@ body {
 }
 nav {
 	padding: 1rem 0.5rem;
+
+	background-color: #ffff53;
 	border-bottom: 1px solid black;
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
 }
 #cookie-consent-banner {
 	width: 100%;
@@ -90,4 +97,27 @@ nav {
 .rememberMeBtn {
 	padding: 0.25em;
 	font-size: 1.2em;
+}
+
+#profile-settings-display-container {
+	padding: 0.5rem;
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
+	gap: 0.5rem;
+}
+#profile-settings-display-container>*{
+	flex-grow: 1;
+	justify-self: center;
+}
+.profile-display-table, .profile-display-table td {
+	border: 1px solid black;
+}
+.profile-display-table td {
+	padding: 0.5rem;
+}
+.profile-display-table td:nth-child(2) {
+	font-weight: bold;
 }
