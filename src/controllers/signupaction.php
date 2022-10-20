@@ -43,12 +43,23 @@
 				) <> new stdClass()
 			) {
 				// crear registre de configuració
-				createNewUserSettingsEntry($db, $email);
+				$settings = createNewUserSettingsEntry($db, $email);
 				
-				if ($cookie_consent = filter_input(INPUT_COOKIE, 'cookie-consent', FILTER_SANITIZE_STRING) == 'true') {
-					if (isset($rememberMe) && ($rememberMe = $_REQUEST['rememberMe'])) {
+				$cookie_consent = filter_input(INPUT_COOKIE, 'cookie-consent', FILTER_SANITIZE_STRING);
+				
+				if ((isset($cookie_consent)) && ($cookie_consent == 'true')) {
+					$rememberMe = $_REQUEST['rememberMe'];
+					if (isset($rememberMe) && ($rememberMe == 'true' || $rememberMe == 'on')) {
 						setcookie('rememberuser_email', $user->email, time()+(3600*24*365), '/');
 						setcookie('rememberuser_passwd', $user->passwd, time()+(3600*24*365), '/');
+					}
+					$guest_language = filter_input(INPUT_COOKIE, 'guest_language', FILTER_SANITIZE_STRING);
+					$guest_colorTheme = filter_input(INPUT_COOKIE, 'guest_colorTheme', FILTER_SANITIZE_STRING);
+					if (isset($guest_colorTheme) && isset($guest_language)) {
+						updateUserSettingsWithUserId($db,
+							$user->id, $settings->lastLogin, $settings->lastLogout,
+							$guest_language, $guest_colorTheme
+						);
 					}
 				}
 				// desar sessió

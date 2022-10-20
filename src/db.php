@@ -176,7 +176,7 @@
 			$stmt = $db->prepare(
 				"INSERT INTO user_settings (userid, lastLogin, language, colorTheme)
 				VALUES
-					(:userid, :lastLogin, 'en', 'light')
+					(:userid, :lastLogin, 'en', 'light_default')
 				;"
 			);
 			$stmt->execute([
