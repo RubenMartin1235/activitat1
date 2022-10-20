@@ -16,7 +16,18 @@
 			</ul>
 		</div>
 		<main>
-			<h2>Welcome, <?= $user->fullname;?>!</h2>
+			<h2>
+				<?php
+					switch ($usersettings->language) {
+						case 'es':
+							echo "¡Bienvenido"; break;
+						case 'ca':
+							echo "Benvingut"; break;
+						default:
+							echo "Welcome"; break;
+					}
+				?>, <?= $user->fullname;?>!
+			</h2>
 		</main>
 		<footer>
 			

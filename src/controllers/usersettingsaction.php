@@ -15,7 +15,7 @@
 			$_REQUEST['language'], $_REQUEST['colorTheme']
 		);
 
-		header('location:?url=dashboard');
+		header('location:?url=userprofile');
 	} else {
 		header('location:?url=home');
 	}
