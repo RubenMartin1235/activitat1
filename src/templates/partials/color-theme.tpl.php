@@ -7,7 +7,7 @@ if (isset($_SESSION['user']) && isset($usersettings)) {
 	if ((isset($cookie_consent) && ($cookie_consent == 'true'))) {
 		$href = filter_input(INPUT_COOKIE, 'guest_colorTheme', FILTER_SANITIZE_STRING);
 	} else {
-		$href = 'light_default.css';
+		$href = 'light_default';
 	}
 }
 ?>
