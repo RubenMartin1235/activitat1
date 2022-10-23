@@ -13,6 +13,8 @@ $langlabels = [
 	'home_title' => 'Pàgina principal',
 	'dashboard_title' => 'Tauler de l\'usuari',
 	'dashboard_label_1' => 'Benvingut/da',
+	'dashboard_heading_all_students' => 'Alumnes:',
+	'dashboard_heading_all_teachers' => 'Professors/res:',
 
 	'login_title' => 'Iniciar sessió',
 	'login_label_email' => 'Adreça electrònica:',

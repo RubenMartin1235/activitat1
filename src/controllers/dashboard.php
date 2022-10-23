@@ -9,9 +9,20 @@
 		$user = $_SESSION['user'];
 		$settings = fetchUserSettingsWithUserId($db, $user->id);
 
+		// If user is a student, get all student names.
+		// If user is a teacher, get all teacher names.
+		$stmt = $db->prepare(
+			"SELECT fullname from users WHERE isProf = :isProf
+			ORDER BY fullname ASC"
+		);
+		$stmt->execute([':isProf'=>$user->isProf]);
+		$userlist = $stmt->fetchAll();
+		
+
 		echo render('dashboard',[
 			'user'=>$user,
-			'usersettings'=>$settings
+			'usersettings'=>$settings,
+			'dashboard_userlist'=>$userlist
 		], getLanguage($settings));
 	} else {
 		header('location:?url=home');

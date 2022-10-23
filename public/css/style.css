@@ -124,3 +124,13 @@ nav {
 button {
 	cursor: pointer;
 }
+
+#dashboard-users-table {
+	margin-top: 2rem;
+	align-self: center;
+	border: 1px solid black;
+}
+#dashboard-users-table td, #dashboard-users-table th {
+	border: 1px solid black;
+	padding: 0.25rem;
+}

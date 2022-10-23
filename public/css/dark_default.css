@@ -48,3 +48,7 @@ button {
 input {
 	color:black;
 }
+
+#dashboard-users-table, #dashboard-users-table td, #dashboard-users-table th {
+	border-color: white;
+}

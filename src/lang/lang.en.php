@@ -13,6 +13,8 @@ $langlabels = [
 	'home_title' => 'Home page',
 	'dashboard_title' => 'User dashboard',
 	'dashboard_label_1' => 'Welcome',
+	'dashboard_heading_all_students' => 'All students:',
+	'dashboard_heading_all_teachers' => 'All teachers:',
 	
 	'login_title' => 'Log in',
 	'login_label_email' => 'Email:',
