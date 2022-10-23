@@ -1,3 +1,3 @@
-<a href="?url=home">Home</a>
-<a href="?url=dashboard">Dashboard</a>
-<a href="?url=logoutaction">Logout</a>
+<a href="?url=home"><?= $home_title; ?></a>
+<a href="?url=dashboard"><?= $dashboard_title; ?></a>
+<a href="?url=logoutaction"><?= $logout_title; ?></a>

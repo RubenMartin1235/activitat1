@@ -1,2 +1,2 @@
-<label for="rememberMe">Remember me on this computer:</label>
+<label for="rememberMe"><?= $login_rememberme_label; ?></label>
 <input id="rememberMe" name="rememberMe" type="checkbox">

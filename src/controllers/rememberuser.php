@@ -24,10 +24,15 @@
 				$lastLogin = "(not available)";
 			}
 
+			$lang = filter_input(INPUT_COOKIE, 'guest_language', FILTER_SANITIZE_STRING);
+			if (!isset($lang)) {
+				$lang = 'en';
+			}
 			echo render('rememberuser',[
 				'fullname' => $fullname,
 				'lastLogin' => $lastLogin
-			]);
+			], $lang);
+			
 		} else {
 			header('location:?url=home');
 		}

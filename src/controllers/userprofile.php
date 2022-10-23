@@ -13,7 +13,7 @@
 		echo render('userprofile',[
 			'user'=>$user,
 			'usersettings' => $settings
-		]);
+		],getLanguage($settings));
 	} else {
 		header('location:?url=home');
 	}

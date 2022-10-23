@@ -3,14 +3,14 @@
 ?>
 	<body>
 		<header>
-			<h1>HOME</h1>
+			<h1><?= $home_title; ?></h1>
 			<?php include APPSRC.'/templates/partials/user-profile-display.tpl.php'; ?>
 		</header>
 		<hr>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
 		<div id="breadcrumbs">
 			<ul>
-				<li><a href="?url=home">Home</a></li>
+				<li><a href="?url=home"><?= $home_title; ?></a></li>
 			</ul>
 		</div>
 		<main>

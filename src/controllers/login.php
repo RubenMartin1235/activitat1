@@ -13,12 +13,16 @@
 			$email = filter_input(INPUT_COOKIE, 'rememberuser_email', FILTER_SANITIZE_STRING);
 			$passwd = filter_input(INPUT_COOKIE, 'rememberuser_passwd', FILTER_SANITIZE_STRING);
 
+			$lang = filter_input(INPUT_COOKIE, 'guest_language', FILTER_SANITIZE_STRING);
+			if (!isset($lang)) {
+				$lang = 'en';
+			}
 			if (
 				isset($email) && isset($passwd)
 			) {
 				header('location:?url=rememberuser');
 			} else {
-				echo render('login');
+				echo render('login', [], getLanguage($lang));
 			}
 		} else {
 			echo render('login');

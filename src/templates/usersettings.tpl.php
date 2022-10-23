@@ -4,26 +4,28 @@
 
 	<body>
 		<header>
-			<h1>Modify profile settings</h1>
+			<h1><?= $usermodprefs_title; ?></h1>
 			<?php include APPSRC.'/templates/partials/user-profile-display.tpl.php'; ?>
 		</header>
 		<hr>
 		<?php include APPSRC.'/templates/partials/nav.tpl.php'; ?>
 		<div id="breadcrumbs">
 			<ul>
-				<li><a href="?url=home">Home</a></li>
-				<li><a href="?url=dashboard">Dashboard</a></li>
-				<li><a href="?url=userprofile">Profile</a></li>
-				<li><a href="?url=usersettings">Modify profile settings</a></li>
+				<li><a href="?url=home"><?= $home_title; ?></a></li>
+				<li><a href="?url=dashboard"><?= $dashboard_title; ?></a></li>
+				<li><a href="?url=userprofile"><?= $userprofile_title; ?></a></li>
+				<li><a href="?url=usersettings"><?= $usermodprefs_title; ?></a></li>
 			</ul>
 		</div>
 		<main>
 			<form action="?url=usersettingsaction" method="post">
 				<div id="profile-settings-display-container">
 					<table class="profile-display-table">
-						<tr><th colspan='2'>Profile settings</th></tr>
 						<tr>
-							<td>Language:</td>
+							<th colspan='2'><?= $guestsettings_title; ?></th>
+						</tr>
+						<tr>
+							<td><?= $guestsettings_label_language; ?></td>
 							<td>
 								<select id="language-field" name="language">
 									<option value="en">English</option>
@@ -33,17 +35,23 @@
 							</td>
 						</tr>
 						<tr>
-							<td>Current visual theme:</td>
+							<td><?= $guestsettings_label_colortheme; ?></td>
 							<td>
 								<select id="color-theme-field" name="colorTheme">
-									<option value="light_default">Light theme</option>
-									<option value="dark_default">Dark theme</option>
+								<option value="light_default">
+										<?= $common_colorthemename_light_default; ?>
+									</option>
+									<option value="dark_default">
+										<?= $common_colorthemename_dark_default; ?>
+									</option>
 								</select>
 							</td>
 						</tr>
 					</table>
 				</div>
-				<button id="modify-user-settings-btn" type="submit">APPLY CHANGES</button>
+				<button id="modify-user-settings-btn" type="submit">
+					<?= $guestsettings_applychanges; ?>
+				</button>
 			</form>
 		</main>
 		<footer>

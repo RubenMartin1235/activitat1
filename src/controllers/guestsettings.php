@@ -11,11 +11,13 @@
 			setcookie('guest_language', "en", time()+(3600*24*365), '/');
 		}
 		
+		$lang = filter_input(INPUT_COOKIE, 'guest_language', FILTER_SANITIZE_STRING);
+
 		//var_dump(filter_input(INPUT_COOKIE, 'guest_colorTheme', FILTER_SANITIZE_STRING));
 		echo render('guestsettings',[
 			'colorTheme' => filter_input(INPUT_COOKIE, 'guest_colorTheme', FILTER_SANITIZE_STRING),
 			'language' => filter_input(INPUT_COOKIE, 'guest_language', FILTER_SANITIZE_STRING)
-		]);
+		], $lang);
 	} else {
 		header('location:?url=home');
 	}
