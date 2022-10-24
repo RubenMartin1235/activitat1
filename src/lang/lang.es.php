@@ -31,7 +31,7 @@ $langlabels = [
 	'signup_label_email' => 'Correo electrónico',
 	'signup_label_passwd' => 'Contraseña',
 	'signup_label_passwdconfirm' => 'Confirma tu contraseña',
-	'signup_label_isprof' => '¿Sois un professor?',
+	'signup_label_isprof' => '¿Sois un profesor?',
 	'signup_signupbtn_label' => 'REGISTRARSE',
 
 	'guestsettings_title' => 'Preferencias de invitado',
